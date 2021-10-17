@@ -1,4 +1,4 @@
-package com.example.abhi.kafka;
+package com.example.abhi.kafka.tutorial1;
 
 import java.time.Duration;
 import java.util.Arrays;

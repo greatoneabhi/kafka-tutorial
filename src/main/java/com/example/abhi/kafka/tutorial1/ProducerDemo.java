@@ -1,4 +1,4 @@
-package com.example.abhi.kafka;
+package com.example.abhi.kafka.tutorial1;
 
 import java.util.Properties;
 
@@ -22,7 +22,7 @@ public class ProducerDemo {
         KafkaProducer<String, String> producer = new KafkaProducer<>(properties);
 
         // Create a producer record
-        ProducerRecord<String, String> producerRecord = new ProducerRecord<String,String>("first_topic", "hello world");
+        ProducerRecord<String, String> producerRecord = new ProducerRecord<>("first_topic", "hello world");
 
         // Send data
         producer.send(producerRecord);

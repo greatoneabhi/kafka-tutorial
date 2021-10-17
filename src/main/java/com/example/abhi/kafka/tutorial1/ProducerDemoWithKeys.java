@@ -1,4 +1,4 @@
-package com.example.abhi.kafka;
+package com.example.abhi.kafka.tutorial1;
 
 import java.util.Objects;
 import java.util.Properties;

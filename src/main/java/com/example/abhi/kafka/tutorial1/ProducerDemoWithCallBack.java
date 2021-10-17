@@ -1,4 +1,4 @@
-package com.example.abhi.kafka;
+package com.example.abhi.kafka.tutorial1;
 
 import java.util.Objects;
 import java.util.Properties;
@@ -28,8 +28,8 @@ public class ProducerDemoWithCallBack {
 
         for (int i=0; i<10; i++) {
             // Create a producer record
-            ProducerRecord<String, String> producerRecord = new ProducerRecord<String, String>("first_topic",
-                    "hello world "+i);
+            ProducerRecord<String, String> producerRecord = new ProducerRecord<>("first_topic",
+                    "hello world " + i);
     
             // Send data
             producer.send(producerRecord,
@@ -40,7 +40,7 @@ public class ProducerDemoWithCallBack {
                                 recordMetadata.topic(), recordMetadata.partition(), recordMetadata.offset(),
                                 recordMetadata.timestamp());
                     } else {
-                        logger.error("Error while producing: {}", e);
+                        logger.error("Error while producing: {}", e.getMessage());
                     }
                 });
                 
