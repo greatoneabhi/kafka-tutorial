@@ -1,8 +1,4 @@
-package com.example.abhi.kafka.tutorial1;
-
-import java.util.Objects;
-import java.util.Properties;
-import java.util.concurrent.ExecutionException;
+package kafka.tutorial1;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
@@ -11,10 +7,13 @@ import org.apache.kafka.common.serialization.StringSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ProducerDemoWithKeys {
-    public static void main(String[] args) throws InterruptedException, ExecutionException {
+import java.util.Objects;
+import java.util.Properties;
 
-        Logger logger = LoggerFactory.getLogger(ProducerDemoWithKeys.class);
+public class ProducerDemoWithCallBack {
+    public static void main(String[] args) {
+
+        Logger logger = LoggerFactory.getLogger(ProducerDemoWithCallBack.class);
 
         String bootstrapServer = "127.0.0.1:9092";
 
@@ -29,13 +28,8 @@ public class ProducerDemoWithKeys {
 
         for (int i=0; i<10; i++) {
             // Create a producer record
-            String topic = "first_topic";
-            String value = "Hello world " + Integer.toString(i);
-            String key = "id_" + Integer.toString(i);
-
-            logger.info("Key: {}", key);
-
-            ProducerRecord<String, String> producerRecord = new ProducerRecord<String, String>(topic, key, value);
+            ProducerRecord<String, String> producerRecord = new ProducerRecord<>("first_topic",
+                    "hello world " + i);
     
             // Send data
             producer.send(producerRecord,
@@ -46,9 +40,9 @@ public class ProducerDemoWithKeys {
                                 recordMetadata.topic(), recordMetadata.partition(), recordMetadata.offset(),
                                 recordMetadata.timestamp());
                     } else {
-                        logger.error("Error while producing: {}", e);
+                        logger.error("Error while producing: {}", e.getMessage());
                     }
-                }).get(); // get() block the send to make it synchronous - don't do this in production  
+                });
                 
         }
         // Flush data
