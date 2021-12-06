@@ -39,7 +39,7 @@ public class TwitterProducer {
         log.info("Setup");
 
         // Set up your blocking queues: Be sure to size these properly based on expected TPS of your stream
-        BlockingQueue<String> msgQueue = new LinkedBlockingQueue<String>(1000);
+        BlockingQueue<String> msgQueue = new LinkedBlockingQueue<>(1000);
 
         // Create a twitter client
         Client client = createTwitterClient(msgQueue);
@@ -114,10 +114,10 @@ public class TwitterProducer {
         hosebirdEndpoint.trackTerms(terms);
 
         // These secrets should be read from a config file
-        String consumerKey = "8EmSyaiHByLCl7uyrdYextK1V";
-        String consumerSecret = "pxMnoSidMwAlMt5bEkFmeqN6HZyvbVe3xr94kNVsFztzgxJKzN";
-        String token = "1140776539086344192-AfqmRtXhvTRdgddWExOvDbfNS33QQO";
-        String secret = "SACS3SMQUswx5ut8NSMtjRSZuKJuuynXiDZdIRHJ0M2Tq";
+        String consumerKey = "";
+        String consumerSecret = "";
+        String token = "";
+        String secret = "";
         Authentication hosebirdAuth = new OAuth1(consumerKey, consumerSecret, token, secret);
 
         ClientBuilder builder = new ClientBuilder()
